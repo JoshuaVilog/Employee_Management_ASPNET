@@ -1,0 +1,45 @@
+﻿@model List<Employee>
+@{
+}
+
+<h2 class="text-center mb-5">List of Employees</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Employee" asp-action="Create">New +</a>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>RFID</th>
+            <th>LASTNAME</th>
+            <th>FIRSTNAME</th>
+            <th>MIDDLENAME</th>
+            <th>BIRTHDATE</th>
+            <th>AGE</th>
+            <th>ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var employee in Model)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.Rfid</td>
+                <td>@employee.Lastname</td>
+                <td>@employee.Firstname</td>
+                <td>@employee.Middlename</td>
+                <td>@employee.Birthdate</td>
+                <td>@employee.Age</td>
+                <td style="white-space: nowrap">
+                    <a class="btn btn-primary btn-sm" asp-controller="Employee" asp-action="Edit" asp-route-id="@employee.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
