@@ -52,8 +52,7 @@ namespace EmployeeManagement.Controllers
             return RedirectToAction("Index", "Employee");
         }
 
-        [HttpPost]
-        public IActionResult Edit(int id, EmployeeDto employeeDto)
+        public IActionResult Edit(int id)
         {
             var employee = context.Employees.Find(id);
 
@@ -61,7 +60,7 @@ namespace EmployeeManagement.Controllers
             {
                 return RedirectToAction("Index", "Employee");
             }
-            /*
+
             var employeeDto = new EmployeeDto()
             {
                 Rfid = employee.Rfid,
@@ -71,7 +70,22 @@ namespace EmployeeManagement.Controllers
                 Birthdate = employee.Birthdate,
                 Age = employee.Age,
             };
-            */
+
+            ViewData["EmployeeId"] = employee.Id;
+
+            return View(employeeDto);
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, EmployeeDto employeeDto)
+        {
+            var employee = context.Employees.Find(id);
+
+            if(employee == null)
+            {
+                return RedirectToAction("Index", "Employee");
+            }
 
             if (!ModelState.IsValid)
             {
